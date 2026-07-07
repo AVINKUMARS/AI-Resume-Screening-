@@ -1,0 +1,253 @@
+:root {
+  --bg: #0b1020;
+  --surface: #151b30;
+  --surface-2: #1d2540;
+  --border: #2a3355;
+  --text: #e8ecf7;
+  --muted: #9aa4c4;
+  --primary: #6d8bff;
+  --primary-strong: #4f6ef2;
+  --good: #35c39a;
+  --warn: #f0b429;
+  --bad: #f16a70;
+  --radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(21, 27, 48, 0.7);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.header h1 {
+  font-size: 18px;
+  margin: 0;
+}
+.header .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.header nav {
+  display: flex;
+  gap: 18px;
+  font-size: 14px;
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+}
+.grid.cols-2 {
+  grid-template-columns: 1fr 1fr;
+}
+.grid.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 800px) {
+  .grid.cols-2,
+  .grid.cols-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+.card h2,
+.card h3 {
+  margin-top: 0;
+}
+
+.muted {
+  color: var(--muted);
+}
+.small {
+  font-size: 13px;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 10px 12px;
+  font-size: 14px;
+  font-family: inherit;
+}
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+label {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 6px;
+  margin-top: 12px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary-strong);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn:hover {
+  background: var(--primary);
+}
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.btn.ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.btn.danger {
+  background: transparent;
+  border: 1px solid var(--bad);
+  color: var(--bad);
+}
+
+.chip {
+  display: inline-block;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 12px;
+  margin: 3px 4px 0 0;
+}
+.chip.good {
+  border-color: var(--good);
+  color: var(--good);
+}
+.chip.bad {
+  border-color: var(--bad);
+  color: var(--bad);
+}
+
+.score {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 18px;
+}
+.score.high {
+  background: rgba(53, 195, 154, 0.15);
+  color: var(--good);
+}
+.score.mid {
+  background: rgba(240, 180, 41, 0.15);
+  color: var(--warn);
+}
+.score.low {
+  background: rgba(241, 106, 112, 0.15);
+  color: var(--bad);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.spread {
+  justify-content: space-between;
+}
+
+.alert {
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  margin: 12px 0;
+}
+.alert.error {
+  background: rgba(241, 106, 112, 0.12);
+  border: 1px solid var(--bad);
+  color: var(--bad);
+}
+.alert.success {
+  background: rgba(53, 195, 154, 0.12);
+  border: 1px solid var(--good);
+  color: var(--good);
+}
+
+.list-item {
+  display: block;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  margin-bottom: 10px;
+}
+.list-item:hover {
+  border-color: var(--primary);
+  text-decoration: none;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
