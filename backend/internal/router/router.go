@@ -13,10 +13,9 @@ func New(h *handlers.Handler, allowedOrigin string) *gin.Engine {
 	r := gin.Default()
 
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{allowedOrigin},
+		AllowAllOrigins:  true,
 		AllowMethods:     []string{"GET", "POST", "DELETE", "OPTIONS"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Accept"},
-		AllowCredentials: true,
 		MaxAge:           12 * time.Hour,
 	}))
 
