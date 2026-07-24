@@ -14,7 +14,10 @@ import (
 // domain models. It returns a live *gorm.DB or an error the caller should treat
 // as fatal.
 func Connect(dsn string) (*gorm.DB, error) {
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
+	db, err := gorm.Open(postgres.New(postgres.Config{
+		DSN:                  dsn,
+		PreferSimpleProtocol: true, // Disables prepared statements for PgBouncer/Supabase pooler compatibility
+	}), &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Warn),
 	})
 	if err != nil {
