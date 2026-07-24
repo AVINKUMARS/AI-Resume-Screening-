@@ -102,7 +102,11 @@ func (h *Handler) UploadResume(c *gin.Context) {
 		RawText:    rawText,
 		SourceFile: sourceFile,
 	}
+	// Strip null bytes which Postgres rejects
+	candidate.RawText = strings.ReplaceAll(candidate.RawText, "\x00", "")
+
 	if err := h.db.Create(&candidate).Error; err != nil {
+		fmt.Printf("ERROR saving candidate: %v\n", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to save candidate"})
 		return
 	}
